@@ -15,6 +15,17 @@ async def on_member_join(member):
 async def test(ctx, arg):
     await ctx.send(arg)
 
+@client.command()
+async def add(ctx, a: int, b: int):
+    await ctx.send(a + b)
+
+@client.event
+async def on_message(message):
+    print(f'{message.author} has posted {message.content}')
+    message_record = f'{message.author},{message.content},'
+    with open('document.csv','a') as fd:
+        fd.write(message_record)
+
 client.run('ODE1MzI0MTkwMTM5MDg4OTI2.YDqv0g.HpgmyJpR7VuRJtBNKxCspOylq6k')
 
 #
