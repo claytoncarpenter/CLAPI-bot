@@ -22,7 +22,7 @@ async def add(ctx, a: int, b: int):
 @client.event
 async def on_message(message):
     print(f'{message.author} has posted {message.content} on {message.channel}')
-    message_record = f'\n{message.author}|{message.mentions}|{message.content}|{message.channel}|{message.created_at}'
+    message_record = f'\n{message.author}|{message.mentions}|{message.content}|{message.guild}|{message.channel}|{message.created_at}'
     with open('document.csv','a') as fd:
         fd.write(message_record)
 
