@@ -26,7 +26,11 @@ async def on_message(message):
     with open('document.csv','a') as fd:
         fd.write(message_record)
 
-client.run('ODE1MzI0MTkwMTM5MDg4OTI2.YDqv0g.HpgmyJpR7VuRJtBNKxCspOylq6k')
+token_file = open(r"E:\Other\DiscordBot\token.txt", "r")
+token = token_file.read()
+token_file.close()
+
+client.run(token)
 
 #
 # 
