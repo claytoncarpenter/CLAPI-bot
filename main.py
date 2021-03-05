@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands, tasks
 import database
-class MyCog(commands.Cog):
+class timer(commands.Cog):
     def __init__(self):
         self.index = 0
         self.printer.start()
@@ -11,14 +11,14 @@ class MyCog(commands.Cog):
         print(self.index)
         self.index += 1
 
-cog = MyCog()
+timekeep = timer()
 
 client = commands.Bot(command_prefix = '.')
 
 @client.event
 async def on_ready():
     print('Bot is Ready!')
-    await cog.printer()
+    await timekeep.printer()
 
 # @client.event
 # async def on_member_join(member):
