@@ -1,7 +1,5 @@
 # CLAPI-bot
-Discord bot
-
-Discord bot that records all messages posted to a discord guild in realtime. Messages are intserted into a SQLite database.
+Discord bot that records all messages posted to a discord guild in realtime. Messages are inserted into a SQLite database.
 If database.py file is ran as main, the code will print a pandas dataframe with all comments.
 
 Functionality to be added:
