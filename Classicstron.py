@@ -1,15 +1,13 @@
 import discord
 from discord.ext import commands, tasks
 from itertools import cycle
+import database
 
 
 class MyCog(commands.Cog):
     def __init__(self):
         self.index = 0
         self.printer.start()
-
-    def cog_unload(self):
-        self.printer.cancel()
 
     @tasks.loop(seconds=5.0)
     async def printer(self):
@@ -41,10 +39,8 @@ async def add(ctx, a: int, b: int):
 
 @client.event
 async def on_message(message):
-    print(f'{message.author} has posted {message.content} on {message.channel}')
-    message_record = f'\n{message.author}|{message.mentions}|{message.content}|{message.guild}|{message.channel}|{message.created_at}'
-    with open('document.csv','a') as fd:
-        fd.write(message_record)
+    print(f'{message.id}      {message.author.name} has posted {message.content} on {message.channel.name}')
+    database.insert(message.id,message.author.name, message.author.id, message.content,message.guild.name,message.channel.name,message.created_at)
 
 token_file = open(r"E:\Other\DiscordBot\token.txt", "r")
 token = token_file.read()
