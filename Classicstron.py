@@ -1,9 +1,6 @@
 import discord
 from discord.ext import commands, tasks
-from itertools import cycle
 import database
-
-
 class MyCog(commands.Cog):
     def __init__(self):
         self.index = 0
@@ -17,29 +14,27 @@ class MyCog(commands.Cog):
 cog = MyCog()
 
 client = commands.Bot(command_prefix = '.')
-status = cycle(['Status 1', 'Status 2'])
-i = 0
 
 @client.event
 async def on_ready():
     print('Bot is Ready!')
     await cog.printer()
 
-@client.event
-async def on_member_join(member):
-    print(f'{member} has joined the server')
+# @client.event
+# async def on_member_join(member):
+#     print(f'{member} has joined the server')
 
-@client.command()
-async def test(ctx, arg):
-    await ctx.send(arg)
+# @client.command()
+# async def test(ctx, arg):
+#     await ctx.send(arg)
 
-@client.command()
-async def add(ctx, a: int, b: int):
-    await ctx.send(a + b)
+# @client.command()
+# async def add(ctx, a: int, b: int):
+#     await ctx.send(a + b)
 
 @client.event
 async def on_message(message):
-    print(f'{message.id}      {message.author.name} has posted {message.content} on {message.channel.name}')
+    print(f'{message.author.name} has posted {message.content} on {message.channel.name}')
     database.insert(message.id,message.author.name, message.author.id, message.content,message.guild.name,message.channel.name,message.created_at)
 
 token_file = open(r"E:\Other\DiscordBot\token.txt", "r")
