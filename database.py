@@ -1,9 +1,13 @@
 import sqlite3
 import pandas as pd
 
-def all_messages():
-        df = pd.read_sql_query("SELECT * FROM messages", con)
-        print(df)
+pd.options.display.max_colwidth = 100
+
+def query(sql):
+        with sqlite3.connect(r'database\discord.db') as con:
+                df = pd.read_sql_query(sql , con)
+                print(df)
+                return df
 
 def insert(id, author, author_id, content, guild, channel, created_at):
         with sqlite3.connect(r'database\discord.db') as con:
@@ -16,7 +20,7 @@ if __name__ == '__main__':
         cur = con.cursor()
         cur.execute("""CREATE TABLE IF NOT EXISTS messages (message_id PRIMARY KEY, author, author_id, content, guild, channel, created_at)""")
         #cur.execute("""DROP TABLE messages""")
-        all_messages()
+        query("SELECT * FROM messages")
 
         
 
