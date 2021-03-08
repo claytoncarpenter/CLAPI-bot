@@ -5,10 +5,8 @@ import matplotlib.pyplot as plt
 def plot():
     try:
         classics = 'The Classics'
-        data = database.query("SELECT * FROM messages") 
-        #WHERE guild = (?)", {classics})
+        data = database.query("SELECT * FROM messages") #WHERE guild = (?)", {classics})
         print(data)
-        print(data.guild.unique())
     except:
         print('Error calling query from database')
     else:
@@ -34,4 +32,6 @@ def plot():
         plt.show()
         # fig.savefig(r'static\plot.png')
         # pass
-        plot()
+
+
+plot()
