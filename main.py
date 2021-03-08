@@ -35,7 +35,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
     print(f'{message.author.name} has posted {message.content} on {message.channel.name}')
-    database.insert(message.id,message.author.name, message.author.id, message.author.bot, message.content,message.guild.name,message.channel.name,message.created_at)
+    database.insert_message(message.id,message.author.name, message.author.id, message.author.bot, message.content,message.guild.name,message.channel.name,message.created_at)
 
 token_file = open(r"E:\Other\DiscordBot\token.txt", "r")
 token = token_file.read()
