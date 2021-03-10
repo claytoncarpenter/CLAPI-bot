@@ -17,6 +17,7 @@ def insert_message(id, author, author_id, bot, content, guild, channel, created_
                         cur = con.cursor()
                         cur.execute("INSERT INTO messages (message_id, author, author_id, bot, content, guild, channel, created_at) VALUES (?,?,?,?,?,?,?,?)",(id, author, author_id, bot, content, guild, channel, created_at))
                         con.commit()
+                con.close()
         except:
                 print('Error inserting message to database')
 
